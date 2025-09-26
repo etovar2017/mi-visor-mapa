@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mapa KMZ de Proyecto V20 - Vista Satelital</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* Estilo para que el mapa ocupe toda la página cuando se incrusta */
+html, body { height: 100%; margin: 0; padding: 0; }
+#map { height: 100%; }
+</style>
+
+<script async defer 
+src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script>
+
+<script>
+function initMap() {
+    // Inicializa el mapa en vista satelital
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14, // Zoom inicial
+        center: {lat: 21.25, lng: -86.85}, // Coordenadas aproximadas de Costa Mujeres
+        mapTypeId: 'satellite' // Vista satelital como Google Earth
+    });
+
+    // Carga la capa KMZ desde tu repositorio de GitHub Pages
+    var kmlLayer = new google.maps.KmlLayer({
+        url: 'https://etovar2017.github.io/mi-visor-mapa/v20_gps_metadata.kmz',
+        suppressInfoWindows: false, // Permite que los popups del KMZ funcionen
+        map: map
+    });
+    
+    // Opcional: Añade una ligera inclinación para simular la vista 3D de Earth Pro
+    map.setTilt(45);
+}
+</script>
+</head>
+<body>
+<div id="map"></div>
+</body>
+</html>
